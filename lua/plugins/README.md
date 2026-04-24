@@ -1,9 +1,0 @@
-avante = for ai agent
-better_escape = dont use <Esc> anymore to escpae, use 'jk' much faster
-colorscheme = theme
-flash = allows you to quickly jump anywhere without having to type 10j10wbaqaciw anymore
-keybind_reminder = i used this when i was begineer in nvim. replace optional to lua to use.
-oil = file explorer, click -
-reactive = makes variation of background color appear on your line whenever you are on a different mode. useful for me, since i have hard time differentiating whether my mode is INSERT or NORMAL or VISUAL
-shade = when you are on multi-buffer windows, the non-current buffer will have slight dark color, indicating as a background buffer
-snacks = mostly for everything. ui.
