@@ -1,14 +1,40 @@
-# My NVIM Config ⚙
-This config only has eight plug-ins. Enough for me to handle any coding task. The plug-ins are below:
-- snacks = UI and Dashboard
-- shade = Makes unfocused window is darken compared to active window
-- reactive = Makes your current line has variation of color depending on your modes. Incredibly helpful, because I have problems recognizing what is my NVIM mode, the color helps me to quickly differentiating the modes.
-- oil = File Explorer
-- keybind_reminder = Initially used when I was begineer, now it is just there. Helpful if you are still stuck with some NVIM keybinds. Instead of $a, you can click A. That's what the plug-in do.
-- flash = Quickly jump to any character any lines via search. Supports Tree-sitter.
-- colorscheme = Theme
-- better_escape = Used to return to NORMAL mode via 'jk' instead of <Esc> which is far more close to your finger.
-- avante = Agent or Assistant
-
 # Installation
 1. Run this:<br>`git clone https://github.com/3oFiz4/nvim ~/.config/nvim/`
+
+| Plugin | Purpose | Why use it? |
+| :--- | :--- | :--- |
+| **Avante (abandoned)** | AI Agent | Integrated AI coding assistant. I don't know why I don't feel like using this plug-in for no reason, I just rarely use it.\|
+| **Better Escape** | Shortcuts | Use `jk` to exit modes—much faster than reaching for `<Esc>`. |
+| **Flash** | Navigation | Precise, lightning-fast jumping across the buffer. |
+| **Oil** | File Explorer | Edit your file system like a normal Neovim buffer (via `-`). |
+| **Reactive** | Visual Feedback | Dynamic background colors based on your current mode. |
+| **Shade** | Focus | Dims inactive windows to highlight your current buffer. |
+| **Snacks** | High-performance UI utilities and core features. |
+| **Colorscheme** | Aesthetics | Sets the visual theme for the editor. |
+| **Keybind Reminder**| Learning Tool | Good for beginners to visualize available shortcuts. |
+---
+### Enabled Core Plugins (10)
+#### **Coding & Editing**
+* **Mini Surround:** Efficiently manage surroundings (brackets, quotes, tags).
+* **Blink:** Comprehensive completion engine (LSP, snippets, buffer, paths).
+* **Yanky:** Enhanced clipboard management with yank/paste history.
+* **Dial:** Intelligent increment/decrement for numbers, dates, and toggles.
+* **Mini Move:** Move lines and blocks of code vertically and horizontally.
+* **Mini Surround:** Add changes in surrounding selection.
+#### **UI & Navigation**
+* **Snacks Explorer:** Fast and modern file exploration.
+* **Snacks Picker:** High-performance fuzzy finder and LSP picker.
+* **Smear Cursor:** Smooth, animated cursor transitions.
+* **Mini HiPatterns:** Real-time color highlighting (includes Tailwind CSS support).
+#### **Formatting**
+* **Prettier:** Code formatting via `conform.nvim` and `mason.nvim`.
+---
+### Language Support (6)
+Specific environments configured with LSP, Treesitter, and Tooling.
+* **JSON:** Includes SchemaStore for autocompletion.
+* **Markdown:** Features live preview and specialized rendering.
+* **PHP:** Full suite including Pest/PHPUnit testing and DAP support.
+* **Python:** Integrated Venv selector, Pytest support, and Debugging.
+* **Tailwind CSS:** Colorizer support for CSS classes.
+* **TOML:** Standard LSP and syntax support.
+
