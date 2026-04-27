@@ -1,35 +1,37 @@
-Enabled External-LazyExtras Plugins:
-avante = for ai agent
-better_escape = dont use <Esc> anymore to escpae, use 'jk' much faster
-colorscheme = theme
-flash = allows you to quickly jump anywhere without having to type 10j10wbaqaciw anymore
-keybind_reminder = i used this when i was begineer in nvim. replace optional to lua to use.
-oil = file explorer, click -
-reactive = makes variation of background color appear on your line whenever you are on a different mode. useful for me, since i have hard time differentiating whether my mode is INSERT or NORMAL or VISUAL
-shade = when you are on multi-buffer windows, the non-current buffer will have slight dark color, indicating as a background buffer
-snacks = mostly for everything. ui.
 
-Enabled Plugins: (10)
-● coding.mini-surround  mini.surround
-● coding.nvim-cmp  cmp-buffer  cmp-nvim-lsp  cmp-path  friendly-snippets  nvim-cmp  nvim-snippets
-● coding.yanky   yanky.nvim
-Better Yank/Paste
-● editor.dial   dial.nvim
-Increment and decrement numbers, dates, and more
-● editor.mini-move  mini.move
-● editor.snacks_explorer   snacks.nvim
-Snacks File Explorer
-● editor.snacks_picker   nvim-lspconfig  snacks.nvim  alpha-nvim  dashboard-nvim  flash.nvim  mini.starter  todo-comments.nvim
-Fast and modern file picker
-● formatting.prettier  mason.nvim  conform.nvim  none-ls.nvim
-● ui.smear-cursor  smear-cursor.nvim  mini.animate
-● util.mini-hipatterns   mini.hipatterns
-Highlight colors in your code. Also includes Tailwind CSS support.
-
-Enabled Languages: (6)
-● lang.json  SchemaStore.nvim  nvim-lspconfig  nvim-treesitter
-● lang.markdown  markdown-preview.nvim  mason.nvim  nvim-lspconfig  render-markdown.nvim  conform.nvim  none-ls.nvim  nvim-lint
-● lang.php   mason.nvim  neotest-pest  neotest-phpunit  nvim-lspconfig  nvim-treesitter  conform.nvim  neotest  none-ls.nvim  nvim-dap  nvim-lint
-● lang.python  neotest-python  nvim-dap-python  nvim-lspconfig  nvim-treesitter  venv-selector.nvim  mason-nvim-dap.nvim  neotest  nvim-cmp  nvim-dap
-● lang.tailwind  nvim-lspconfig  tailwindcss-colorizer-cmp.nvim  nvim-cmp
-● lang.toml  nvim-lspconfig
+| Plugin | Purpose | Why use it? |
+| :--- | :--- | :--- |
+| **Avante (abandoned)** | AI Agent | Integrated AI coding assistant. I don't know why I don't feel like using this plug-in for no reason, I just rarely use it.\|
+| **Better Escape** | Shortcuts | Use `jk` to exit modes—much faster than reaching for `<Esc>`. |
+| **Flash** | Navigation | Precise, lightning-fast jumping across the buffer. |
+| **Oil** | File Explorer | Edit your file system like a normal Neovim buffer (via `-`). |
+| **Reactive** | Visual Feedback | Dynamic background colors based on your current mode. |
+| **Shade** | Focus | Dims inactive windows to highlight your current buffer. |
+| **Snacks** | High-performance UI utilities and core features. |
+| **Colorscheme** | Aesthetics | Sets the visual theme for the editor. |
+| **Keybind Reminder**| Learning Tool | Good for beginners to visualize available shortcuts. |
+---
+### Enabled Core Plugins (10)
+#### **Coding & Editing**
+* **Mini Surround:** Efficiently manage surroundings (brackets, quotes, tags).
+* **Blink:** Comprehensive completion engine (LSP, snippets, buffer, paths).
+* **Yanky:** Enhanced clipboard management with yank/paste history.
+* **Dial:** Intelligent increment/decrement for numbers, dates, and toggles.
+* **Mini Move:** Move lines and blocks of code vertically and horizontally.
+* **Mini Surround:** Add changes in surrounding selection.
+#### **UI & Navigation**
+* **Snacks Explorer:** Fast and modern file exploration.
+* **Snacks Picker:** High-performance fuzzy finder and LSP picker.
+* **Smear Cursor:** Smooth, animated cursor transitions.
+* **Mini HiPatterns:** Real-time color highlighting (includes Tailwind CSS support).
+#### **Formatting**
+* **Prettier:** Code formatting via `conform.nvim` and `mason.nvim`.
+---
+### Language Support (6)
+Specific environments configured with LSP, Treesitter, and Tooling.
+* **JSON:** Includes SchemaStore for autocompletion.
+* **Markdown:** Features live preview and specialized rendering.
+* **PHP:** Full suite including Pest/PHPUnit testing and DAP support.
+* **Python:** Integrated Venv selector, Pytest support, and Debugging.
+* **Tailwind CSS:** Colorizer support for CSS classes.
+* **TOML:** Standard LSP and syntax support.
