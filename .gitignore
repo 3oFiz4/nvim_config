@@ -6,3 +6,48 @@ debug
 foo.*
 *.log
 data
+# Lazy.nvim plugins
+lazy-lock.json
+
+# Neovim cache
+.cache/
+tmp/
+log/
+
+# Swap files
+*.swp
+*.swo
+*.swn
+
+# Session files
+Session.vim
+Sessionx.vim
+
+# Undo history
+undo/
+
+# Backup files
+*.bak
+*.old
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# LSP logs
+lsp.log
+
+# Mason packages
+mason/
+
+# Local test files
+*.test
+*.tmp
+
+# Lua bytecode
+*.luac
+
+# IDEs
+.vscode/
+.idea/
