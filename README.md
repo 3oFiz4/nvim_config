@@ -50,3 +50,4 @@ Specific environments configured with LSP, Treesitter, and Tooling.
 - **Python:** Integrated Venv selector, Pytest support, and Debugging.
 - **Tailwind CSS:** Colorizer support for CSS classes.
 - **TOML:** Standard LSP and syntax support.
+- **Rust**: Rust tool (rust-analyzer, rust-tools, and rust-playground)
