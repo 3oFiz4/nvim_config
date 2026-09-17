@@ -1,5 +1,6 @@
 return {
-  'rasulomaroff/reactive.nvim',
+  "rasulomaroff/reactive.nvim",
+  event = "VeryLazy",
   opts = {
     builtin = {
       cursorline = true,
@@ -15,7 +16,7 @@ return {
         i = {
           winhl = {
             -- overwrites StatusLine highlight group in insert mode
-            StatusLine = { bg = '', fg = '' },
+            StatusLine = { bg = "", fg = "" },
           },
         },
       },

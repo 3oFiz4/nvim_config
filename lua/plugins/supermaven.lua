@@ -25,4 +25,5 @@ return {
       api.toggle()
     end, { desc = "Toggle Supermaven" })
   end,
+  lazy = true,
 }

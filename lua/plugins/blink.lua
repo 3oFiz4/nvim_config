@@ -46,4 +46,5 @@ return {
     },
     keymap = { preset = "super-tab" },
   },
+  lazy = true,
 }
