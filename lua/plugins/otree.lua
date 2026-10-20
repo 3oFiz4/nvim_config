@@ -1,6 +1,5 @@
 return {
   "Eutrius/Otree.nvim",
-  lazy = true,
   dependencies = {
     -- Optional: Enhanced file operations
     "stevearc/oil.nvim",

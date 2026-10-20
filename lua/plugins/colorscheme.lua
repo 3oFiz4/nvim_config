@@ -110,25 +110,25 @@ return {
           colors.bg_dark = "#000000" -- sideBar.background / panel.background
           colors.bg_float = "#161b22" -- editorWidget.background
           colors.bg_popup = "#161b22" -- list.hoverBackground
-          colors.bg_sidebar = "#0d1117" -- sideBar.background
-          colors.bg_statusline = "#0d1117" -- statusBar.background
+          colors.bg_sidebar = "#000000" -- sideBar.background
+          colors.bg_statusline = "#000000" -- statusBar.background
 
           -- Base Foregrounds
           colors.fg = "#c9d1d9" -- editor.foreground
           colors.fg_dark = "#8b949e" -- tab.inactiveForeground
-          colors.fg_gutter = colors.red
+          colors.fg_gutter = "#000000"
           colors.fg_border = "#30363d" -- tab.unfocusedActiveBorderTop (Used for general borders)
 
           -- Accents (Mapped from UI variables)
-          colors.blue = "#58a6ff" -- textLink.foreground / notificationsInfoIcon.foreground
+          colors.blue = "#800000" -- normal mode placeholder (50% darker red)
           colors.cyan = "#39c5cf" -- Inferred standard (matches generic dark themes for this palette)
           colors.green = "#28a745" -- editorGutter.addedBackground
           colors.teal = "#17e5e6" -- editor.selectionHighlightBorder
           colors.orange = "#f9826c" -- activityBar.activeBorder
           colors.yellow = "#ffd33d" -- editor.findMatchHighlightBackground (base color)
           colors.purple = "#bc8cff" -- Standard GitHub Dark Keyword
-          colors.magenta = "#d46ec0" -- Previous palette
-          colors.red = "#f97583" -- errorForeground
+          colors.magenta = "#ff0000" -- keyboard operator log / Statement (red instead of purple)
+          colors.red = "#ff0000" -- errorForeground
 
           -- Git / Gutter
           colors.git = {
@@ -138,9 +138,9 @@ return {
           }
 
           -- Diagnostics
-          colors.error = "#f97583" -- errorForeground
+          colors.error = "#ff0000" -- errorForeground
           colors.warning = "#ffab70" -- notificationsWarningIcon.foreground
-          colors.info = "#58a6ff" -- notificationsInfoIcon.foreground
+          colors.info = "#ff0000" -- notificationsInfoIcon.foreground
           colors.hint = "#c9d1d9" -- foreground
         end,
 
@@ -165,20 +165,21 @@ return {
           -- Cursor
           hl.CursorLine = { bg = c.cursorline }
           hl.CursorLineNr = {
-            fg = c.red,
+            fg = "#ff0000",
             bold = true,
           }
-          hl.CursorLineNrAbove = {
-            fg = c.red,
+          hl.LineNrAbove = {
+            fg = c.color0,
             bold = true,
           }
-          hl.CursorLineNrBelow = {
-            fg = c.red,
+          hl.LineNrBelow = {
+            fg = c.color0,
             bold = true,
           }
 
           hl.LineNr = {
-            fg = c.red,
+            fg = c.color3,
+            bold = true,
           }
 
           -- Visual/Search
@@ -484,8 +485,8 @@ return {
           }
 
           hl.StatusLineNC = {
-            bg = c.hex01,
-            fg = c.hex06,
+            bg = "#000000",
+            fg = "#ff0000",
           }
 
           -- =========================================================
@@ -519,6 +520,77 @@ return {
           hl.TabLineFill = {
             bg = c.hex00,
             fg = c.hex05,
+          }
+
+          hl.TabLineSel = {
+            bg = "#ff0000",
+            fg = "#000000",
+            bold = true,
+          }
+
+          hl.Directory = {
+            fg = "#ff0000",
+          }
+
+          hl.Title = {
+            fg = "#ff0000",
+            bold = true,
+          }
+
+          hl.Question = {
+            fg = "#ff0000",
+          }
+
+          hl.MoreMsg = {
+            fg = "#ff0000",
+          }
+
+          hl.ComplHintMore = {
+            link = "MoreMsg",
+          }
+
+          hl["@label"] = {
+            fg = "#ff0000",
+          }
+
+          hl.Folded = {
+            fg = "#ff0000",
+            bg = "#330000",
+          }
+
+          -- Keyboard operator log / pending commands in statusline
+          hl.Statement = {
+            fg = "#ff0000",
+          }
+
+          -- Snacks Dashboard
+          hl.SnacksDashboardDesc = {
+            fg = "#ffffff",
+          }
+
+          hl.SnacksDashboardIcon = {
+            fg = "#ffffff",
+          }
+
+          hl.SnacksDashboardHeader = {
+            fg = "#ffffff",
+          }
+
+          hl.SnacksDashboardFooter = {
+            fg = "#ffffff",
+          }
+
+          hl.SnacksDashboardKey = {
+            fg = "#ff0000",
+          }
+
+          hl.SnacksDashboardSpecial = {
+            fg = "#ff0000",
+          }
+
+          -- WhichKey
+          hl.WhichKey = {
+            fg = "#ffffff",
           }
 
           hl.TSPunctDelimiter = {
@@ -728,8 +800,8 @@ return {
           }
 
           hl.StatusLineNC = {
-            bg = c.hex01,
-            fg = c.hex06,
+            bg = "#000000",
+            fg = "#ff0000",
           }
 
           hl.WinBar = {
@@ -1142,10 +1214,6 @@ return {
             bold = true,
             nocombine = true,
           }
-
-          vim.api.nvim_set_hl(0, "LineNrAbove", { fg = color_0, bold = true })
-          vim.api.nvim_set_hl(0, "LineNr", { fg = color_3, bold = true })
-          vim.api.nvim_set_hl(0, "LineNrBelow", { fg = color_0, bold = true })
         end,
       }
     end,
