@@ -7,7 +7,15 @@ local wk = require("which-key")
 
 -- Oil Keymap
 map("n", "-", function()
-  vim.cmd("Otree")
+  -- open vertical split on the left
+  vim.cmd("topleft vsplit")
+
+  -- set width to 20% of the screen
+  local width = math.floor(vim.o.columns * 0.2)
+  vim.cmd("vertical resize " .. width)
+
+  -- open Oil in the split
+  vim.cmd("Oil")
 end, { desc = "Open Oil (20% width)" })
 
 local statusline_visible = true
@@ -28,36 +36,5 @@ map("n", "<leader>aS", toggle_statusline, {
   desc = "Toggle Statusline",
 })
 
-local function toggle_minuet_autocomplete()
-  local ok, minuet = pcall(require, "minuet")
-  if not ok then
-    vim.notify("Minuet AI is not loaded yet.", vim.log.levels.WARN)
-    return
-  end
-
-  local status = {}
-
-  if minuet.config.blink then
-    minuet.config.blink.enable_auto_complete = not minuet.config.blink.enable_auto_complete
-    local state = minuet.config.blink.enable_auto_complete and "enabled" or "disabled"
-    table.insert(status, "blink: " .. state)
-  end
-
-  if minuet.config.cmp then
-    minuet.config.cmp.enable_auto_complete = not minuet.config.cmp.enable_auto_complete
-    local state = minuet.config.cmp.enable_auto_complete and "enabled" or "disabled"
-    table.insert(status, "cmp: " .. state)
-  end
-
-  pcall(function()
-    require("minuet.virtualtext").action.toggle_auto_trigger()
-  end)
-
-  if #status > 0 then
-    vim.notify("Minuet auto-complete " .. table.concat(status, ", "), vim.log.levels.INFO, { title = "Minuet AI" })
-  end
-end
-
-map("n", "<leader>as", toggle_minuet_autocomplete, {
-  desc = "Toggle Minuet Auto-complete",
-})
+map("n", "<leader>as", "<cmd>Minuet blink toggle<cr>", { desc = "Toggle Minuet Auto-complete" })
+map("n", "as", "<cmd>Minuet blink toggle<cr>", { desc = "Toggle Minuet Auto-complete" })
