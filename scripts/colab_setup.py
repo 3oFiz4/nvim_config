@@ -30,8 +30,9 @@ print("Colab Jupyter Server running on 127.0.0.1:8888 with token: colab123")
 
 3. On your local machine (in WezTerm / Terminal):
 --------------------------------------------------
-# Forward port 8888 through Cloudflare tunnel (replace <HOSTNAME> from colab-ssh output):
-ssh -N -L 8888:127.0.0.1:8888 -o ProxyCommand="cloudflared access ssh --hostname <HOSTNAME>" root@<HOSTNAME>
+# Forward port 8888 through Cloudflare tunnel (replace <HOSTNAME> from colab-ssh output).
+# Note: omit '-N' so the password prompt ('colab123') triggers immediately:
+ssh -L 8888:127.0.0.1:8888 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="cloudflared access ssh --hostname <HOSTNAME>" root@<HOSTNAME>
 
 4. In Neovim:
 --------------------------------------------------
