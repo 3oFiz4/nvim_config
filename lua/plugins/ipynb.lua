@@ -7,7 +7,7 @@ return {
     "folke/snacks.nvim", -- optional, for inline images
   },
   kernel = {
-    python_path = "C:Python314python.exe",
+    python_path = "C:/Python314/python.exe",
   },
   opts = {},
   lazy = true,

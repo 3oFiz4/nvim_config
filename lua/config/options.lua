@@ -4,3 +4,4 @@
 vim.g.have_nerd_font = false
 vim.g.lazyvim_php_lsp = "intelephense"
 vim.opt.termguicolors = true
+vim.g.python3_host_prog = "C:/Python314/python.exe"
