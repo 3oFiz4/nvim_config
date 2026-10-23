@@ -3,6 +3,19 @@ return {
   version = "^1.0.0",
   build = ":UpdateRemotePlugins",
   dependencies = { "willothy/wezterm.nvim" },
+  cmd = {
+    "ColabConnect",
+    "MoltenInit",
+    "MoltenInfo",
+    "MoltenEvaluateLine",
+    "MoltenEvaluateOperator",
+    "MoltenEvaluateVisual",
+    "MoltenReevaluateCell",
+    "MoltenShowOutput",
+    "MoltenHideOutput",
+    "MoltenDelete",
+    "MoltenInterrupt",
+  },
   init = function()
     vim.g.molten_auto_open_output = false
     vim.g.molten_image_provider = "wezterm"
@@ -15,10 +28,10 @@ return {
     vim.g.molten_virt_lines_off_by_1 = true
     vim.g.molten_auto_image_popup = false
     vim.g.molten_output_win_max_height = 20
-  end,
-  config = function()
+
     vim.api.nvim_create_user_command("ColabConnect", function(opts)
       local target = opts.args ~= "" and opts.args or "http://localhost:8888"
+      require("lazy").load({ plugins = { "molten-nvim" } })
       vim.cmd("MoltenInit " .. target)
     end, {
       nargs = "?",
