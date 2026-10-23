@@ -1,21 +1,17 @@
 """
-Google Colab Bridge for Neovim (WezTerm + Molten + Cloudflare Tunnel)
------------------------------------------------------------------------
-Run this script inside a cell on your Google Colab notebook:
+Google Colab Direct Tunnel for Neovim (WezTerm + Molten)
+---------------------------------------------------------
+Zero SSH, zero local port forwarding, zero System32 modifications.
+Exposes Colab Jupyter directly via Cloudflare HTTPS/WSS tunnel.
 
-1. Setup Colab environment:
+1. Paste & run this in a cell on Google Colab:
 --------------------------------------------------
-!pip install colab_ssh jupyter --upgrade
+!wget -q -nc https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O /usr/local/bin/cloudflared
+!chmod +x /usr/local/bin/cloudflared
 
-2. Start Cloudflare SSH Tunnel and Jupyter Server:
---------------------------------------------------
-from colab_ssh import launch_ssh_cloudflared
-import subprocess, time
+import subprocess, time, re
 
-# Set a password for your SSH tunnel
-launch_ssh_cloudflared(password="colab123")
-
-# Launch headless Jupyter server on port 8888
+# Launch Jupyter server headless
 subprocess.Popen([
     "jupyter", "notebook",
     "--ip=127.0.0.1",
@@ -23,21 +19,38 @@ subprocess.Popen([
     "--no-browser",
     "--allow-root",
     "--NotebookApp.token=colab123",
-    "--NotebookApp.allow_origin='*'"
+    "--NotebookApp.allow_origin='*'",
+    "--NotebookApp.disable_check_xsrf=True"
 ])
+time.sleep(2)
 
-print("Colab Jupyter Server running on 127.0.0.1:8888 with token: colab123")
+# Expose Jupyter over Cloudflare HTTPS/WSS quick tunnel
+tunnel = subprocess.Popen(
+    ["cloudflared", "tunnel", "--url", "http://127.0.0.1:8888"],
+    stderr=subprocess.PIPE,
+    text=True
+)
 
-3. On your local machine (in WezTerm / Terminal):
+for line in tunnel.stderr:
+    match = re.search(r"https://[a-zA-Z0-9-]+\.trycloudflare\.com", line)
+    if match:
+        url = match.group(0)
+        print("\n" + "="*50)
+        print(f"Colab URL: {url}/?token=colab123")
+        print("="*50 + "\n")
+        print(f"In Neovim run: :ColabConnect {url}/?token=colab123")
+        break
+
+2. In Neovim:
 --------------------------------------------------
-# Forward port 8888 through Cloudflare tunnel (replace <HOSTNAME> from colab-ssh output).
-# Note: omit '-N' so the password prompt ('colab123') triggers immediately:
-ssh -L 8888:127.0.0.1:8888 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="cloudflared access ssh --hostname <HOSTNAME>" root@<HOSTNAME>
+# Connect directly:
+:ColabConnect https://<YOUR-COLAB-SUBDOMAIN>.trycloudflare.com/?token=colab123
 
-4. In Neovim:
---------------------------------------------------
-# Connect to the remote Colab kernel:
-:ColabConnect http://localhost:8888/?token=colab123
-# Or use keymap:
-<leader>mc
+# Keymaps in buffer:
+<leader>ml - Evaluate Line
+<leader>me - Evaluate Operator
+<leader>mr - Re-evaluate Cell
+<leader>mv - Evaluate Visual
+<leader>mo - Show Output Window
+<leader>mh - Hide Output Window
 """
