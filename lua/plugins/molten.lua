@@ -61,5 +61,30 @@ return {
     { "<leader>md", ":MoltenDelete<cr>", desc = "Molten Delete Cell Output" },
     { "<leader>mI", ":MoltenInterrupt<cr>", desc = "Molten Interrupt Kernel" },
     { "<leader>mv", ":<C-u>MoltenEvaluateVisual<cr>gv", mode = "v", desc = "Molten Evaluate Visual" },
+    {
+      "<leader>mx",
+      function()
+        local ok, ipynb_state_mod = pcall(require, "ipynb.state")
+        if ok and ipynb_state_mod then
+          local state = ipynb_state_mod.get()
+          if state and state.facade_buf == vim.api.nvim_get_current_buf() then
+            local cursor_line = vim.api.nvim_win_get_cursor(0)[1] - 1
+            local cells_mod = require("ipynb.cells")
+            local cell_idx = cells_mod.get_cell_at_line(state, cursor_line)
+            if cell_idx then
+              local c_start, c_end = cells_mod.get_content_range(state, cell_idx)
+              if c_start and c_end and c_start <= c_end then
+                -- 1-based indexing for MoltenEvaluateRange
+                vim.fn.MoltenEvaluateRange(c_start + 1, c_end + 1)
+                return
+              end
+            end
+          end
+        end
+        -- Fallback to MoltenReevaluateCell if not in ipynb facade
+        vim.cmd("MoltenReevaluateCell")
+      end,
+      desc = "Execute Current Cell in Molten",
+    },
   },
 }
