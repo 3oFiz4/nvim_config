@@ -11,14 +11,19 @@ Exposes Colab Jupyter directly via Cloudflare HTTPS/WSS tunnel.
 
 import subprocess, time, re
 
-# Launch Jupyter server headless
+# Launch Jupyter server headless with remote access flags
 subprocess.Popen([
     "jupyter", "notebook",
-    "--ip=127.0.0.1",
+    "--ip=0.0.0.0",
     "--port=8888",
     "--no-browser",
     "--allow-root",
+    "--ServerApp.token=colab123",
+    "--ServerApp.allow_remote_access=True",
+    "--ServerApp.allow_origin='*'",
+    "--ServerApp.disable_check_xsrf=True",
     "--NotebookApp.token=colab123",
+    "--NotebookApp.allow_remote_access=True",
     "--NotebookApp.allow_origin='*'",
     "--NotebookApp.disable_check_xsrf=True"
 ])
