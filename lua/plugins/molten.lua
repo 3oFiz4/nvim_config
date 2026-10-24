@@ -20,7 +20,23 @@ return {
     vim.g.molten_use_border_highlights = true
     vim.g.molten_virt_lines_off_by_1 = true
     vim.g.molten_auto_image_popup = false
-    vim.g.molten_output_win_max_height = 20
+    -- Auto-patch molten remote websocket for wss/https tunnels if present
+    local jupyter_api_file = vim.fn.stdpath("data") .. "/lazy/molten-nvim/rplugin/python3/molten/jupyter_server_api.py"
+    if vim.fn.filereadable(jupyter_api_file) == 1 then
+      local lines = vim.fn.readfile(jupyter_api_file)
+      local content = table.concat(lines, "\n")
+      if not content:find("ws_scheme =") then
+        content = content:gsub(
+          'self%._socket = websocket%.create_connection%(f"ws://{parsed_url%.hostname}:{parsed_url%.port}"%s*\n%s*f"/api/kernels/{self%._kernel_info%[\'id\'%]}/channels",%s*\n%s*header=self%._headers,%s*\n%s*%)',
+          'ws_scheme = "wss" if parsed_url.scheme == "https" else "ws"\n        netloc = parsed_url.netloc\n        ws_url = f"{ws_scheme}://{netloc}/api/kernels/{self._kernel_info[\'id\']}/channels"\n        self._socket = websocket.create_connection(ws_url, header=self._headers)'
+        )
+        content = content:gsub(
+          "while True:%s*\n%s*response = json%.loads%(self%._socket%.recv%(%)%)%s*\n%s*self%._recv_queue%.put%(response%)",
+          "while True:\n            try:\n                raw = self._socket.recv()\n                if not raw:\n                    break\n                response = json.loads(raw)\n                self._recv_queue.put(response)\n            except Exception:\n                break"
+        )
+        vim.fn.writefile(vim.split(content, "\n"), jupyter_api_file)
+      end
+    end
 
     vim.api.nvim_create_user_command("ColabConnect", function(opts)
       local rplugin = vim.fn.stdpath("data") .. "/rplugin.vim"
