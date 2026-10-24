@@ -1,14 +1,15 @@
 return {
   "ajbucci/ipynb.nvim",
+  lazy = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "neovim/nvim-lspconfig",
-    "nvim-tree/nvim-web-devicons", -- optional, for language icons
-    "folke/snacks.nvim", -- optional, for inline images
+    "nvim-tree/nvim-web-devicons",
+    "folke/snacks.nvim",
   },
-  kernel = {
-    python_path = "C:/Python314/python.exe",
+  opts = {
+    kernel = {
+      python_path = "C:/Python314/python.exe",
+    },
   },
-  opts = {},
-  lazy = true,
 }
