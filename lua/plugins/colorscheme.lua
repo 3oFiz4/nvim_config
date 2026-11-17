@@ -146,11 +146,11 @@ return {
 
         -- Highlight fine-tuning (Treesitter + LSP-safe)
         on_highlights = function(hl, c)
-          hl.Normal = { fg = c.hex09, bg = c.bg }
-          hl.Menu = { fg = c.hex09, bg = c.bg }
+          hl.Normal = { fg = c.hex09, bg = "none" }
+          hl.Menu = { fg = c.hex09, bg = "none" }
           hl.NormalFloat = { fg = c.hex09, bg = c.hex00 }
           hl.FloatBorder = { fg = c.red_dark, bg = c.hex00 }
-          hl.NormalNC = { fg = c.hex08, bg = c.bg }
+          hl.NormalNC = { fg = c.hex08, bg = "none" }
           -- Popups
           hl.Pmenu = { bg = c.hex01, fg = c.hex09 }
           hl.PmenuSel = { bg = c.hex03, fg = c.white }
@@ -509,7 +509,7 @@ return {
 
           hl.SignColumn = {
             bg = c.black,
-            fg = c.hex05,
+            fg = "none",
           }
 
           hl.TabLine = {
